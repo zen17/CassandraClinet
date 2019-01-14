@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="d-flex flex-row-reverse bd-highlight">
+    <button type="button" class="close  btn-lg" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="card">
+    <div class="card-body" style="padding: 60px">
+      <div class="form-wrap">
+        <form [formGroup]="postAdForm">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="kategorija">Kategorija</label>
+                <input type="text" class="form-control" id="kategorija" formControlName="kategorija">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="marka">Marka</label>
+                <input type="text" class="form-control" id="marka" formControlName="marka">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="model">Model</label>
+                <input type="text" class="form-control" id="model" formControlName="model">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="naslov">Naslov </label>
+                <input type="text" class="form-control" id="naslov" formControlName="naslov">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="stanje">Stanje</label>
+                <select class="form-control" id="stanje" formControlName="stanje">
+                  <option value="novo">Novo</option>
+                  <option value="kaonovo">Kao novo</option>
+                  <option value="polovno">Polovno</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="cena">Cena</label>
+                <input type="number" class="form-control" id="cena" formControlName="cena">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="datum">Datum</label>
+                <input type="text" class="form-control" id="datum" formControlName="datum">
+              </div>
+            </div>
+
+
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="opis">Opis</label>
+                <input type="text" class="form-control" id="opis" formControlName="opis">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <button type="submit" class="btn btn-primary" style="margin-left: 5px" (click)="save()">Create ad</button>
+            <button type="submit" class="btn btn-primary" style="margin-left: 5px" (click)="save()">Upload images</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,20 @@
+<app-serach (searchTerm)="getCategory($event)"></app-serach>
+<button mat-button (click)="getCategory('automobil')" >Auromobili</button>
+<button mat-button (click)="getCategory('telefon')" >Telefoni</button>
+
+<div class="card-deck">
+  <app-ad *ngFor="let ad of ads"
+          [kategorija]="ad.kategorija"
+          [grupa]="ad.grupa"
+          [model]="ad.model"
+          [naslov]="ad.naslov"
+          [stanje]="ad.stanje"
+          [slike]="ad.slike"
+          [opis]="ad.opis"
+          [oglas_id]="ad.oglas_id"
+          [lajkovi]="ad.lajkovi"
+          [cena]="ad.cena"
+          [datum]="ad.datum"
+          [user_email]="ad.user_email"
+  ></app-ad>
+</div>
