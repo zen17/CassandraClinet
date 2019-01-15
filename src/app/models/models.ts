@@ -11,4 +11,5 @@ export interface Ad {
   cena: number;
   datum: string;
   user_email: string;
+  like?:boolean;
 }

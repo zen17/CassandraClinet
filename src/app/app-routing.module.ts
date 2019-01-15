@@ -10,10 +10,10 @@ import {PostAdsComponent} from './components/post-ads/post-ads.component';
 
 const routes: Routes = [
   {
-    path: '', component: AdsComponent
+    path: '', canActivate: [sessionStorage.getItem('login')], component: AdsComponent
   },
   {
-    path: 'my-ads', component: MyAdsComponent
+    path: 'my-ads',  component: MyAdsComponent
   },
   {
     path: 'profile', component: ProfileComponent
@@ -22,10 +22,10 @@ const routes: Routes = [
     path: 'ads', component: AdsComponent
   },
   {
-    path: 'login', component: LoginComponent
+    path: 'login',  component: LoginComponent
   },
   {
-    path: 'sigin-in', component: SigninComponent
+    path: 'signin', component: SigninComponent
   },
   {
     path: 'liked-ads', component: LikedAdsComponent

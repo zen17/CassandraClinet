@@ -19,6 +19,8 @@ export class LikedAdsComponent implements OnInit {
       .getUserAds('http://localhost:3001/lajkovani', {user_email: sessionStorage.getItem('email')})
       .subscribe(data => {
         this.ads = data;
+        console.log(sessionStorage.getItem('email'));
+        console.log(data);
       });
   }
 

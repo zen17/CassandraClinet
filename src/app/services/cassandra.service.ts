@@ -18,7 +18,14 @@ export class CassandraService {
   public getCategory(param): Observable<any> {
     return this.httpClient.post('http://localhost:3001/kategorija', param);
   }
-  
+
+  public register(param): Observable<any> {
+    return this.httpClient.post('http://localhost:3001/insert_user', param);
+  }
+
+  public login(param): Observable<any> {
+    return this.httpClient.post('http://localhost:3001/user', param);
+  }
 
   public getUserAds(url, param): Observable<any> {
     return this.httpClient.post(url, param);

@@ -1,27 +1,44 @@
-
-import { Component, OnInit } from '@angular/core';
-import {GoogleSignInSuccess} from 'angular-google-signin';
-declare var googleyolo: any;
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {CassandraService} from '../../services/cassandra.service';
 
 @Component({
   selector: 'app-singin',
   templateUrl: './singin.component.html',
   styleUrls: ['./singin.component.css']
 })
-export class SigninComponent {
-  constructor() {
+export class SigninComponent implements OnInit {
+
+  logInForm: FormGroup;
+
+  constructor(private fb: FormBuilder, private cassandraService: CassandraService) {
   }
-  
-  private myClientId: string = '103399071908-pbuv4f8gt3prirkdvscnvun4987v9gf8.apps.googleusercontent.com';
-  
-  onGoogleSignInSuccess(event: GoogleSignInSuccess) {
-    let googleUser: gapi.auth2.GoogleUser = event.googleUser;
-    let id: string = googleUser.getId();
-    let profile: gapi.auth2.BasicProfile = googleUser.getBasicProfile();
-    console.log('ID: ' +
-      profile
-        .getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
+
+  ngOnInit() {
+    this.logInForm = this.fb.group({
+      email: [''],
+      username: [''],
+      password: [''],
+      firstName: [''],
+      lastName: [''],
+      picture: ['http://pink-rs.com/media/image/portal-media-d19e6bd0-b178-43f0-6d21-4413f2e1aa9f/720']
+    });
   }
+
+  register() {
+
+    const tmp = this.logInForm.getRawValue();
+    sessionStorage.setItem('email', tmp.email);
+    this
+      .cassandraService.register({
+      email: tmp.email,
+      username: tmp.username,
+      password: tmp.password,
+      firstname: tmp.firstName,
+      lastname: tmp.lastName,
+      slika: tmp.picture
+    }).subscribe(data => console.log(data));
+  }
+
 }
 

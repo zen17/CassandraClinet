@@ -1,8 +1,59 @@
-<google-signin
-  [clientId]="myClientId"
-  [width]="myWidth"
-  [theme]="myTheme"
-  [scope]="myScope"
-  [longTitle]="myLongTitle"
-  (googleSignInSuccess)="onGoogleSignInSuccess($event)">
-</google-signin>
+<div class="container">
+  <div class="d-flex flex-row-reverse bd-highlight">
+    <button type="button" class="close  btn-lg" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="card">
+    <div class="card-body" style="padding: 60px">
+      <div class="form-wrap">
+        <form [formGroup]="logInForm">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="email">Email </label>
+                <input type="text" class="form-control" id="email" formControlName="email">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="username">Username </label>
+                <input type="text" class="form-control" id="username" formControlName="username">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="password">Password </label>
+                <input type="text" class="form-control" id="password" formControlName="password">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="firstName">First Name </label>
+                <input type="text" class="form-control" id="firstName" formControlName="firstName">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="lastName">Last Name </label>
+                <input type="text" class="form-control" id="lastName" formControlName="lastName">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <button type="submit" class="btn btn-primary" style="margin-left: 5px" (click)="register()">Create ad</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

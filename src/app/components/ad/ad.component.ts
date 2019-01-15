@@ -40,12 +40,12 @@ export class AdComponent implements OnInit, Ad {
       this.lajkovi = this.lajkovi + 1;
       this.kliknuto = !this.kliknuto;
       this.naziv = 'Dislike';
-      sessionStorage.setItem('like', 'true')
+      sessionStorage.setItem('like', 'true');
       this.cassandraService.lajkuj('http://localhost:3001/lajkuj-oglas', {
         kategorija: this.kategorija.toLowerCase(),
         model: this.model.toLowerCase(),
         oglas_id: this.oglas_id,
-        user_email: this.user_email,
+        user_email: sessionStorage.getItem('email'),
         datum: this.datum,
         opis: this.opis,
         slike: this.slike,

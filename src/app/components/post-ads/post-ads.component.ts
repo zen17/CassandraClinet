@@ -24,7 +24,8 @@ export class PostAdsComponent implements OnInit {
       stanje: [''],
       cena: [''],
       datum: [''],
-      opis: ['']
+      opis: [''],
+     slika: ['']
     });
   }
 
@@ -42,8 +43,7 @@ export class PostAdsComponent implements OnInit {
         cena: tmp.cena,
         datum: tmp.datum,
         opis: tmp.opis,
-        slike: ['https://www.autoexclusive.rs/chest/strane/najprodavaniji-automobili-svih-vremena/' +
-        'muski-magazin-automobili-najprodavaniji-automobili-svih-vremena%20(99).jpg'],
+        slike: [tmp.slika],
         like: '0',
         user_email: sessionStorage.getItem('email')
       }).subscribe(data => console.log(data));
