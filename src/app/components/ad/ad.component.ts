@@ -1,7 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Ad} from '../../models/models';
-import {CassandraService} from '../../services/cassandra.service';
-
+import {MongoService} from '../../services/mongo.service';
 
 @Component({
   selector: 'app-ad',
@@ -25,7 +24,7 @@ export class AdComponent implements OnInit, Ad {
   kliknuto: boolean;
   naziv: string;
 
-  constructor(public cassandraService: CassandraService) {
+  constructor(public mongoService: MongoService) {
     this.naziv = 'Like';
   }
 
@@ -41,7 +40,7 @@ export class AdComponent implements OnInit, Ad {
       this.kliknuto = !this.kliknuto;
       this.naziv = 'Dislike';
       sessionStorage.setItem('like', 'true');
-      this.cassandraService.lajkuj('http://localhost:3001/lajkuj-oglas', {
+      this.mongoService.likeAd({
         kategorija: this.kategorija.toLowerCase(),
         model: this.model.toLowerCase(),
         oglas_id: this.oglas_id,
@@ -59,7 +58,7 @@ export class AdComponent implements OnInit, Ad {
       this.lajkovi = this.lajkovi - 1;
       this.kliknuto = !this.kliknuto;
       this.naziv = 'Like';
-      this.cassandraService.lajkuj('http://localhost:3001/lajkuj-oglas', {
+      this.mongoService.likeAd({
         kategorija: this.kategorija.toLowerCase(),
         model: this.model.toLowerCase(),
         oglas_id: this.oglas_id,

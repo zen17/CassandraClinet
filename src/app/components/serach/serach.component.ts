@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {CassandraService} from '../../services/cassandra.service';
 import {Observable} from 'rxjs';
 import {debounceTime, map} from 'rxjs/operators';
+import {MongoService} from '../../services/mongo.service';
 
 @Component({
   selector: 'app-serach',
@@ -16,7 +16,7 @@ export class SerachComponent implements OnInit {
 
   input$: Observable<any>;
 
-  constructor(private cassandraService: CassandraService, private  fb: FormBuilder) {
+  constructor(private mongoService: MongoService, private  fb: FormBuilder) {
     this.searchForm = this.fb.group({
       search: ['']
     });

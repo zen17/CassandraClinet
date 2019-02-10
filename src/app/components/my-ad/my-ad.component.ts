@@ -2,6 +2,7 @@ import {Component, Input, OnInit, Output} from '@angular/core';
 import {CassandraService} from '../../services/cassandra.service';
 import {EventEmitter} from '@angular/core';
 import {OuterSubscriber} from 'rxjs/internal-compatibility';
+import {MongoService} from '../../services/mongo.service';
 
 @Component({
   selector: 'app-my-ad',
@@ -25,22 +26,23 @@ export class MyAdComponent implements OnInit {
 
   @Output() deleteMyAd = new EventEmitter<string>();
 
-  constructor(private cassandraService: CassandraService) {
+  constructor(private mongoService: MongoService) {
   }
 
   ngOnInit() {
   }
 
   deleteAd() {
-      this.cassandraService.deleteAd('http://localhost:3001/delete', {
-        datum: this.datum,
-        kategorija: this.kategorija,
-        oglas_id: this.oglas_id,
-        model: this.model,
-        user_email: this.user_email
-      }).subscribe(data => {
-        this.deleteMyAd.emit(this.oglas_id);
-        console.log(data);
-      });
+    this.mongoService.deleteAd({
+      datum: this.datum,
+      kategorija: this.kategorija,
+      oglas_id: this.oglas_id,
+      model: this.model,
+      user_email: this.user_email
+    }).subscribe(data => {
+
+      this.deleteMyAd.emit(this.oglas_id);
+      console.log(data);
+    });
   }
 }

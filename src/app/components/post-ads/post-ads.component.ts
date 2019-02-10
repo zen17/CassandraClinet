@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Ad} from '../../models/models';
-import {CassandraService} from '../../services/cassandra.service';
+import {MongoService} from '../../services/mongo.service';
 
 @Component({
   selector: 'app-post-ads',
@@ -11,7 +10,7 @@ import {CassandraService} from '../../services/cassandra.service';
 export class PostAdsComponent implements OnInit {
   postAdForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private cassandraService: CassandraService) {
+  constructor(private fb: FormBuilder, private mongoService: MongoService) {
   }
 
   ngOnInit() {
@@ -25,7 +24,7 @@ export class PostAdsComponent implements OnInit {
       cena: [''],
       datum: [''],
       opis: [''],
-     slika: ['']
+      slika: ['']
     });
   }
 
@@ -33,8 +32,8 @@ export class PostAdsComponent implements OnInit {
     console.log(sessionStorage.getItem('email'));
     const tmp = this.postAdForm.getRawValue();
     console.log(tmp);
-    this.cassandraService
-      .postAds('http://localhost:3001/insert', {
+    this.mongoService
+      .postAd({
         kategorija: tmp.kategorija.toLowerCase(),
         grupa: tmp.marka.toLowerCase(),
         model: tmp.model.toLowerCase(),
