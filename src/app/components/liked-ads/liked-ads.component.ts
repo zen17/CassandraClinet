@@ -21,7 +21,7 @@ export class LikedAdsComponent implements OnInit {
       .subscribe(data => {
         this.ads = data;
         console.log(sessionStorage.getItem('email'));
-        console.log(data);
+        console.log('getLikedAds: ', data);
       });
   }
 

@@ -39,6 +39,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import { SerachComponent } from './components/serach/serach.component';
 import { MyAdComponent } from './components/my-ad/my-ad.component';
+import { AdDetailsPageComponent } from './components/ad-details-page/ad-details-page.component';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -70,7 +71,8 @@ export function getAuthServiceConfigs() {
     MainNavComponent,
     PostAdsComponent,
     SerachComponent,
-    MyAdComponent
+    MyAdComponent,
+    AdDetailsPageComponent
 
   ],
   imports: [

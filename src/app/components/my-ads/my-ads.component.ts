@@ -16,21 +16,22 @@ export class MyAdsComponent implements OnInit {
 
   ngOnInit() {
     this.mongoService
-      .getMyAds( {user_email: sessionStorage.getItem('email')})
+      .getMyAds({user_email: sessionStorage.getItem('email')})
       .subscribe(data => {
+        console.log('', data);
         this.ads = data;
       });
   }
 
   deleteMyAd(value) {
-    console.log(value)
-    console.log('Moji', this.ads)
+    console.log(value);
+    console.log('Moji', this.ads);
     const tmp = this.ads.filter(x => {
       if (x._id !== value) {
         return x;
       }
     });
-    console.log(tmp)
+    console.log(tmp);
     this.ads = tmp;
   }
 }

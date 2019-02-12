@@ -17,15 +17,16 @@ export class AdsComponent implements OnInit {
   ngOnInit() {
     this.mongoService.getMainAds()
       .subscribe(data => {
+        console.log('getMainAds: ',data);
         this.ads = data;
       });
   }
 
   getCategory(value) {
-    this.mongoService.serachCategory({kategorija: value})
+    this.mongoService.searachCategory({kategorija: value})
       .subscribe(data => {
+        console.log('searachCategory', data);
         this.ads = data;
       });
-    console.log(value);
   }
 }

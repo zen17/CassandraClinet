@@ -1,6 +1,7 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Ad} from '../../models/models';
 import {MongoService} from '../../services/mongo.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-ad',
@@ -21,15 +22,17 @@ export class AdComponent implements OnInit, Ad {
   @Input() datum: string;
   @Input() user_email: string;
 
+  @Output() addDetails = new EventEmitter();
+
   kliknuto: boolean;
   naziv: string;
 
-  constructor(public mongoService: MongoService) {
+  constructor(public mongoService: MongoService, private  router: Router) {
     this.naziv = 'Like';
   }
 
   ngOnInit() {
-    console.log(this.cena, this.slike, this.naslov,
+    console.log('Ad:', this.oglas_id, this.cena, this.slike, this.naslov,
       this.datum, this.grupa, this.model, this.kategorija, this.lajkovi, this.opis);
   }
 
@@ -41,38 +44,23 @@ export class AdComponent implements OnInit, Ad {
       this.naziv = 'Dislike';
       sessionStorage.setItem('like', 'true');
       this.mongoService.likeAd({
-        kategorija: this.kategorija.toLowerCase(),
-        model: this.model.toLowerCase(),
-        oglas_id: this.oglas_id,
         user_email: sessionStorage.getItem('email'),
-        datum: this.datum,
-        opis: this.opis,
-        slike: this.slike,
-        lajk: this.lajkovi,
-        naslov: this.naslov,
-        cena: this.cena,
-        grupa: this.grupa,
-        stanje: this.stanje
+        oglas_id: this.oglas_id
       }).subscribe();
     } else {
       this.lajkovi = this.lajkovi - 1;
       this.kliknuto = !this.kliknuto;
       this.naziv = 'Like';
       this.mongoService.likeAd({
-        kategorija: this.kategorija.toLowerCase(),
-        model: this.model.toLowerCase(),
-        oglas_id: this.oglas_id,
-        user_email: this.user_email,
-        datum: this.datum,
-        opis: this.opis,
-        slike: this.slike,
-        lajk: this.lajkovi,
-        naslov: this.naslov,
-        cena: this.cena,
-        grupa: this.grupa,
-        stanje: this.stanje
+        user_email: sessionStorage.getItem('email'),
+        oglas_id: this.oglas_id
       }).subscribe();
-
     }
+  }
+
+
+  redirect() {
+    let tmp = '/details/'+ this.oglas_id;
+    this.router.navigate([tmp])
   }
 }

@@ -1,20 +1,21 @@
-<mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{ naslov }}</mat-card-title>
-      <mat-card-subtitle>{{ grupa }}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src='{{slike[0]}}' alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-        {{opis}}
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-butto color="kliknuto? primary : accent " (click)="lajkuj()">{{naziv}}</button>
-      <mat-card-title>cena: {{cena}}</mat-card-title>
-      <mat-card-title>svidjanja: {{lajkovi}}</mat-card-title>
-    </mat-card-actions>
-  </mat-card>
+<mat-card class="example-card" >
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ naslov }}</mat-card-title>
+    <mat-card-subtitle>{{ grupa }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src='{{slike[0]}}' alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      {{opis}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="primary" (click)="redirect()">Prikazi oglas</button>
+    <button mat-button color="primary" (click)="lajkuj()">Like</button>
+    <mat-card-title>cena: {{cena}}</mat-card-title>
+    <mat-card-title>svidjanja: {{lajkovi}}</mat-card-title>
+  </mat-card-actions>
+</mat-card>
 
 

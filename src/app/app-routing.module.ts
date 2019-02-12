@@ -7,6 +7,7 @@ import {MyAdsComponent} from './components/my-ads/my-ads.component';
 import {LoginComponent} from './components/login/login.component';
 import {LikedAdsComponent} from './components/liked-ads/liked-ads.component';
 import {PostAdsComponent} from './components/post-ads/post-ads.component';
+import {AdDetailsComponent} from './components/ad-details/ad-details.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,9 @@ const routes: Routes = [
   },
   {
     path: 'post-ads', component: PostAdsComponent
+  },
+  {
+    path: 'details/:id', component: AdDetailsComponent
   }
 
 ];
